@@ -11,8 +11,8 @@ def update_entry(entry, value):
 # evaluate the expression in the entry widget
 def evaluate_entry(entry):
     try:
-        print(eval(entry.get()))
         # takes the current text in the entry widget, evaluates it as a python expression, and stores the result in the result variable
+        # it will execute any code passed to it
         result = eval(entry.get())
         clear_entry(entry)
         # inserts the evaluated result as a string into the entry widget
@@ -35,7 +35,7 @@ root.title("Calculator")
 entry = tk.Entry(root, width=16, font=('Arial', 24), borderwidth=2, relief="solid")
 entry.grid(row=0, column=0, columnspan=4)
 
-# probably explained it duh
+# define the buttons and their layout
 buttons = [
     ('7', 1, 0), ('8', 1, 1), ('9', 1, 2), ('/', 1, 3),
     ('4', 2, 0), ('5', 2, 1), ('6', 2, 2), ('*', 2, 3),
@@ -44,6 +44,7 @@ buttons = [
     ('C', 5, 0)
 ]
 
+# create and place the buttons on the window
 for (text, row, col) in buttons:
     if text == '=':
         button = tk.Button(root, text=text, width=4, height=2, font=('Arial', 18),
